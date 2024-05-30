@@ -1,0 +1,15 @@
+{
+  "name": "hp",
+  "version": "1.0.0",
+  "description": "a happy frontend framework",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/node": "^20.12.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ts-node compiler/index.ts"
+  },
+  "author": "happice",
+  "license": "ISC"
+}
