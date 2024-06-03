@@ -1,4 +1,4 @@
-import { Attribute, Token } from "./type";
+import { Token } from "./type";
 
 export const tokenizer = (code:string) => {
     let current:number = 0;
@@ -56,6 +56,5 @@ export const tokenizer = (code:string) => {
             current++;
         }
     }
-    
     return tokens;
 }

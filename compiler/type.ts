@@ -1,16 +1,15 @@
 export type ASTNode = {
     tagName?:string,
-    attrs?:Attribute[],
+    attrs?:Attribute,
     children?:Array<string|ASTNode>,
     content?:string,
     body?:ASTNode[],
 }
 export type Attribute = {
-    className?:string,
-    id?:string,
+    [key:string]:string;
 }
 export type Token = {
     tagName?:string,
-    attrs?:Attribute[],
+    attrs?:Attribute,
     content?:string,
 }
