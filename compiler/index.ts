@@ -5,7 +5,7 @@ import { generator } from './generator';
 export const compiler = (input:string):string => {
     const tokens = tokenizer(input);
     const ast = parser(tokens);
-    console.dir(ast, {depth:null});
+    // console.dir(ast, {depth:null});
     const code = generator(ast);
     return code;
 }
