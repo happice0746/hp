@@ -1,7 +1,7 @@
-import Websocket from "ws";
+import Websocket, { WebSocketServer } from "ws";
 export const socketChannelDriver = () => {
   return new Promise((resolve) => {
-    const wss = new Websocket.Server({ port: 3000 });
+    const wss = new WebSocketServer({ port: 3000 });
     wss.on("connection", (ws: Websocket) => {
       ws.on("message", (message) => {
         setImmediate(() => {
@@ -18,6 +18,7 @@ export const socketChannelDriver = () => {
       console.log("socket 已经链接");
       setTimeout(() => {
         // global.platform.send({ msg: "hello,world" });
+        console.log("send");
         ws.send(JSON.stringify({ msg: "hello, world" }));
       }, 3000);
     });

@@ -9,12 +9,14 @@ declare global {
     hp: WebSocket;
     JSBridge: Bridge;
     _handleNativeEvent: (data: Data) => void;
+    _handleNativeCallback: (data: Data) => void;
   }
 }
 
 export type Bridge = {
   registerEvent: (evnet: string, Callback: (params: any) => any) => void;
   postMessage: (data: { [key: string]: string | number | null | undefined | boolean }) => void;
+  callbackId: number;
 };
 
 export type Data = string | Buffer | ArrayBuffer | Buffer[];

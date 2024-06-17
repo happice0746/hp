@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">22222222</div>
+  </body>
+  <script type="module" defer>
+    import { JSBridge } from "./bridge.js";
+    import { devtoolClientServer } from "./_devToolBridge.js";
+    devtoolClientServer();
+    window.JSBridge = new JSBridge();
+    const bridge = window.JSBridge;
+    bridge.registerEvent("ready", (res) => {});
+    bridge.registerEvent("render", (res) => {});
+    bridge.registerEvent("style", (res) => {});
+  </script>
+</html>
