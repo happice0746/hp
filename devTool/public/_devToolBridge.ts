@@ -1,4 +1,5 @@
-import { WebSocket } from "ws";
+// import { WebSocket } from "ws";
+// 这是渲染端的ws server
 export const devtoolClientServer = () => {
   if (window.hp) return;
   window.hp = new WebSocket("ws://127.0.0.1:3000");

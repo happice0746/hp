@@ -1,5 +1,4 @@
 import { Data } from "../types";
-// function postNativeMessage(message: string) {}
 import { postNativeMessage } from "./_devToolBridge";
 function invokeNativeEvent(name: string, payload: any, callbackId: number) {
   const message = {
@@ -19,7 +18,9 @@ export class JSBridge {
     window._handleNativeEvent = this.handleNativeEvent.bind(this);
     window._handleNativeCallback = this.handleNativeCallback.bind(this);
   }
-  postMessage() {}
+  postMessage(payload: any) {
+    postNativeMessage(payload);
+  }
   invoke(name: string, payload: any, callback: (params: any) => any) {
     this.responseCallbackMap.set(this.callbackId, callback);
     invokeNativeEvent(name, payload, this.callbackId++);
