@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["es2016", "esnext", "dom"],
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+    // "declaration": true
+  },
+  "include": ["devTool/public/*.ts"],
+  // "exclude": ["build"]
+  "ts-node": {
+    "esm": true
+  }
+}
