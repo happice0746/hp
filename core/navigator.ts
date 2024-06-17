@@ -1,15 +1,16 @@
-import { AppIntance } from "./app";
+import { AppInstance } from "./app";
 import { Page } from "./page";
+import { handleUrlAndParams } from "./utils";
 
 export class HNavigator {
-  private MAXPAGELIMIT: number = 10;
+  private MAX_PAGE_LIMIT: number = 10;
   pageStack: Page[] = [];
-  appInstance: AppIntance;
-  constructor(appInstance: AppIntance) {
+  appInstance: AppInstance;
+  constructor(appInstance: AppInstance) {
     this.appInstance = appInstance;
     this.getPageStack = this.getPageStack.bind(this);
     this.getCurPage = this.getCurPage.bind(this);
-    this.redirctPage = this.redirctPage.bind(this);
+    this.redirectPage = this.redirectPage.bind(this);
     this.navigateTo = this.navigateTo.bind(this);
   }
   getPageStack(): Page[] {
@@ -25,19 +26,21 @@ export class HNavigator {
     this.pageStack.pop();
     this.getCurPage() && this.getCurPage().active();
   }
-  redirctPage(url: string): void {
-    const newPage = this.appInstance.createPage(url);
+  redirectPage(url: string): void {
+    const [originalUrl, params] = handleUrlAndParams(url);
+    const newPage = this.appInstance.createPage(originalUrl as string);
     this.pageStack.pop();
     this.pageStack.push(newPage);
     newPage.launch();
   }
   navigateTo(url: string) {
-    if (this.pageStack.length === this.MAXPAGELIMIT) {
+    if (this.pageStack.length === this.MAX_PAGE_LIMIT) {
       throw new Error("PageStack Overflow Error");
     }
-    const newPage = this.appInstance.createPage(url);
+    const [originalUrl, params] = handleUrlAndParams(url);
+    const newPage = this.appInstance.createPage(originalUrl as string);
     if (!newPage) return;
-    this.getCurPage() && this.getCurPage().unactive();
+    this.getCurPage() && this.getCurPage().inactive();
     this.pageStack.push(newPage);
     this.appInstance.openPage(newPage.pageId);
     newPage.launch();

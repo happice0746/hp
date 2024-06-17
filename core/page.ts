@@ -1,15 +1,15 @@
-const NOTION: string = "hp";
+const ID_PREFIX: string = "hp_";
 let id: number = 0;
 export class Page {
   pageId: string;
   appInstance;
   constructor(appInstance) {
-    this.pageId = `${NOTION}${id++}`;
+    this.pageId = `${ID_PREFIX}${id++}`;
     this.appInstance = appInstance;
   }
   launch() {}
   active() {}
-  unactive() {}
+  inactive() {}
   getPageId() {
     return this.pageId;
   }

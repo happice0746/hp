@@ -1,10 +1,10 @@
-import { AppIntance } from "./app";
+import { AppInstance } from "./app";
 
 export class Channel {
-  appInstance: AppIntance;
-  constructor(appInstance: AppIntance) {
+  appInstance: AppInstance;
+  constructor(appInstance: AppInstance) {
     this.appInstance = appInstance;
-    global.platform.accpet = this.acceptClientMessage.bind(this);
+    global.platform.accept = this.acceptClientMessage.bind(this);
   }
   postClientMessage(pageId: number, eventName: string, direct: string) {
     const payload = {

@@ -1,7 +1,7 @@
 import { Page } from "./page";
 
-export class AppIntance {
+export class AppInstance {
   createPage(url: string): Page {}
-  handleMessage() {}
+  handleMessage(type: string, params: any) {}
   openPage(pageId: string) {}
 }
