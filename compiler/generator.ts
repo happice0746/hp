@@ -1,8 +1,6 @@
-import { transformer } from "./transformer";
+import { HpTransformer } from "./hp/transformer";
 import { ASTNode } from "./type";
 
-export const generator = (ast:ASTNode):string => {
-    return `const code = { 
-        render: ${ transformer(ast) }
-    }`;
-}
+export const generator = (ast: ASTNode): string => {
+  return `${HpTransformer(ast)}`;
+};
