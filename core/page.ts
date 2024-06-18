@@ -17,7 +17,7 @@ export class Page {
     const { path, render, js, css } = this.pageConfig;
     this.pagePath = path;
     this.css = css;
-    this.renderer = new Renderer(render, AppInstance);
+    this.renderer = new Renderer(render, this);
     js();
   }
   launch() {}

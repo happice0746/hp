@@ -8,3 +8,9 @@ export type AppConfig = {
   onLaunch: () => void;
   onReady: () => void;
 };
+export type VNode = {};
+export enum RENDER_COMMAND {
+  CREATE = "CREATE",
+  DELETE = "DELETE",
+  UPDATE = "UPDATE",
+}

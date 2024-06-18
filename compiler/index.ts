@@ -59,7 +59,7 @@ function analysisPage(pagePath: string, context: CodeContext): void {
 }
 function handleAppJS(): string {
   const code = fs.readFileSync(path.join(config.READ_PATH, "app.js"), "utf-8");
-  return `handleJS(${code})`;
+  return JSTransformer(code);
 }
 analysisProject(path.join(config.READ_PATH, "app.json")).then((pagePaths: string[]) => {
   const context = new CodeContext();

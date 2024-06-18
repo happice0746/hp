@@ -1,5 +1,5 @@
 App({
-  Launch: () => {
+  onLaunch: () => {
     console.log("项目启动");
   },
   data: {
