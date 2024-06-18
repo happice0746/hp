@@ -1,7 +1,36 @@
+import { AppConfig, PageConfig } from "./types";
+import { Channel } from "./channel";
+import { HNavigator } from "./navigator";
 import { Page } from "./page";
+import path from "path";
 
 export class AppInstance {
-  createPage(url: string): Page {}
+  appConfig: AppConfig;
+  pagesConfig: PageConfig[];
+  channel: Channel;
+  navigator: HNavigator;
+  constructor(pagesConfig: PageConfig[], appConfig: AppConfig) {
+    this.appConfig = appConfig;
+    this.pagesConfig = pagesConfig;
+    this.channel = new Channel(this);
+    this.navigator = new HNavigator(this);
+    process.nextTick(() => {
+      this.launch();
+    });
+  }
+  launch() {
+    this.appConfig.onLaunch && this.appConfig.onLaunch();
+    const firstPage = this.pagesConfig[0];
+    this.navigator.navigateTo(firstPage.path + "?init=true");
+  }
+  PageReady() {
+    this.appConfig.onReady && this.appConfig.onReady();
+  }
+  createPage(pagePath: string): Page {
+    const pageConfig = this.pagesConfig.find((page) => page.path === pagePath);
+    if (!pageConfig) throw new Error("Except the pageConfig in app");
+    return new Page(this, pageConfig);
+  }
   handleMessage(type: string, params: any) {}
   openPage(pageId: string) {}
 }
