@@ -1,5 +1,7 @@
+// Native 层--Server
+// WSsend是发渲染层的
 import Websocket, { WebSocketServer } from "ws";
-let WSsend = function (params: { [key: string]: string }) {};
+let WSsend = function (params: { [key: string]: any }) {};
 let WSaccept = function (message: string) {};
 export const socketChannelDriver = () => {
   return new Promise((resolve) => {
@@ -17,9 +19,7 @@ export const socketChannelDriver = () => {
       WSaccept = function (message: string) {};
       console.log("socket 已经链接");
       setTimeout(() => {
-        // global.platform.send({ msg: "hello,world" });
-        console.log("send");
-        ws.send(JSON.stringify({ msg: "hello, world" }));
+        WSsend({ msg: "hello, world" });
       }, 3000);
     });
   });

@@ -1,4 +1,4 @@
-import { ASTNode } from "../type";
+import { ASTNode } from "../types";
 import { CodeContext } from "../context";
 export const HpTransformer = (ast: ASTNode): string => {
   const context = new CodeContext();

@@ -2,7 +2,6 @@
     <Text className="textBox" id="secondBox">
         <View className="viewBox" id="thirdBox" ref={{a}}>happice</View>
         <View className="viewBox" id="thirdBox">happice</View>
-        nihao
     </Text>
 </View>
 <View>

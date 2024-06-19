@@ -1,4 +1,4 @@
-import { Token } from "../type";
+import { Token } from "../types";
 
 export const tokenizer = (code: string) => {
   let current: number = 0;
