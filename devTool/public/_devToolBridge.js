@@ -17,7 +17,6 @@ export const devtoolClientServer = () => {
     window.JSBridge.postNativeMessage(payload);
   };
   hp.onmessage = function (message) {
-    console.log(message);
     window._handleNativeEvent && window._handleNativeEvent(message.data);
   };
 };

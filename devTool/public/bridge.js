@@ -42,7 +42,7 @@ export class JSBridge {
   }
   handleNativeEvent(jsonRes) {
     const res = JSON.parse(jsonRes);
-    console.log(res);
+    // console.log(res);
     const { eventName } = res,
       params = __rest(res, ["eventName"]);
     const callback = this.eventMap.get(eventName);

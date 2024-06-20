@@ -20,6 +20,7 @@ export const handleProps = (ele, props) => {
   // }
 };
 export const handleCommand = (commandList) => {
+  console.log(commandList);
   commandList
     .sort((a, b) => a.nodeId - b.nodeId)
     .forEach((command) => {

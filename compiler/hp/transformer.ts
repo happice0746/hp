@@ -30,7 +30,7 @@ const transformChildrenNode = (node: ASTNode | string, context: CodeContext) => 
     context.pushCode(`'${node}'`);
     return;
   }
-  context.pushCode(`context.createNode(${node.tagName}, `);
+  context.pushCode(`context.createNode("${node.tagName}", `);
   transformAttrs(node, context);
   if (node.children && node.children.length > 0) {
     context.pushCode(",");
@@ -55,7 +55,7 @@ const transformAttrs = (node: ASTNode, context: CodeContext) => {
     }
     if (/\{\{.*?\}\}/.test(value)) {
       const result = value.match(/\{\{.*?\}\}/) as string[];
-      const newValue = "`${context.getValue(" + result[0].slice(2, -2).trim() + ")}`";
+      const newValue = "`${context.getValue('" + result[0].slice(2, -2).trim() + "')}`";
       context.pushCode(`${key}: ${newValue}`);
     } else {
       context.pushCode(`${key}: ${value}`);

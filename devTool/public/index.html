@@ -6,12 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="root">22222222</div>
+    <div id="root"></div>
   </body>
   <script type="module" defer>
     import { JSBridge } from "./bridge.js";
     import { devtoolClientServer } from "./_devToolBridge.js";
     import { handleCommand, setCssToStyleHead } from "./bootstraps.js";
+    window.page = "hp_0";
     devtoolClientServer();
     window.JSBridge = new JSBridge();
     const bridge = window.JSBridge;

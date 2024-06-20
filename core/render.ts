@@ -18,11 +18,11 @@ export class Renderer {
     this.vnode = this.diff(newVnode, this.vnode, "root");
     this.commit();
   }
-  createNode(type: string, props: { [key: string]: any }, children: (params: any) => any) {
+  createNode(type: string, props: { [key: string]: any }, children: VNode[] | ((params: any) => any)) {
     return {
       type,
       props,
-      children: typeof children === "function" ? children(this.createRenderContext()) : [],
+      children: typeof children === "function" ? children(this.createRenderContext()) : children,
     };
   }
   createRenderContext() {
