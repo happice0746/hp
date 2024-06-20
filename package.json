@@ -12,7 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsx ./compiler/index.ts",
-    "dev": "tsx ./driver.ts"
+    "dev": "npm run build && tsx ./driver.ts"
   },
   "author": "happice",
   "license": "ISC",
