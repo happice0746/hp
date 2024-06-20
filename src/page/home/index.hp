@@ -1,13 +1,12 @@
-<View className="viewBox" id="firstBox">
-    <Text className="textBox" id="secondBox">
-        <View className="viewBox" id="thirdBox" ref={{a}}>happice</View>
-        <View className="viewBox" id="thirdBox">happice</View>
-        nihao
-    </Text>
-</View>
-<View>
-
-</View>
-<View>
-
-</View>
+<view className="viewBox" id="firstBox">
+    <text className="textBox" id="secondBox">
+        <view className="viewBox" id="thirdBox" ref={{a}}>happice</view>
+        <view className="viewBox" id="thirdBox">happice</view>
+    </text>
+</view>
+<view>
+ 111
+</view>
+<view>
+222
+</view>

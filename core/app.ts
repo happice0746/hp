@@ -1,4 +1,4 @@
-import { AppConfig, PageConfig } from "./types";
+import { AppConfig, Command, PageConfig } from "./types";
 import { Channel } from "./channel";
 import { HNavigator } from "./navigator";
 import { Page } from "./page";
@@ -23,7 +23,7 @@ export class AppInstance {
     const firstPage = this.pagesConfig[0];
     this.navigator.navigateTo(firstPage.path + "?init=true");
   }
-  PageReady() {
+  pageReady() {
     this.appConfig.onReady && this.appConfig.onReady();
   }
   createPage(pagePath: string): Page {
@@ -33,4 +33,10 @@ export class AppInstance {
   }
   handleMessage(type: string, params: any) {}
   openPage(pageId: string) {}
+  styleSheet(pageId: string, css: string) {
+    this.channel.postClientMessage(pageId, "style", css);
+  }
+  render(pageId: string, commandList: Command[]) {
+    this.channel.postClientMessage(pageId, "render", commandList);
+  }
 }

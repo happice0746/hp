@@ -11,9 +11,6 @@ declare global {
     _handleNativeEvent: (data: Data) => void;
     _handleNativeCallback: (data: Data) => void;
   }
-  interface global {
-    platform: Platform;
-  }
 }
 
 export type Bridge = {

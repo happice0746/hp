@@ -8,9 +8,23 @@ export type AppConfig = {
   onLaunch: () => void;
   onReady: () => void;
 };
-export type VNode = {};
+export type VNode = {
+  parentId?: string | number;
+  type: string;
+  props: { [key: string]: string };
+  children: Array<VNode | string>;
+  nodeId?: number;
+};
 export enum RENDER_COMMAND {
   CREATE = "CREATE",
   DELETE = "DELETE",
   UPDATE = "UPDATE",
 }
+export type Command = {
+  type: RENDER_COMMAND;
+  tag: string;
+  parentId: string | number;
+  content?: string;
+  nodeId: number;
+  props?: { [key: string]: string };
+};

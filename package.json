@@ -11,8 +11,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ts-node compiler/index.ts",
-    "dev": "tsc && tsx init.ts"
+    "build": "tsx ./compiler/index.ts",
+    "dev": "tsx ./driver.ts"
   },
   "author": "happice",
   "license": "ISC",

@@ -6,16 +6,33 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="root">22222222</div>
+    <div id="root"></div>
   </body>
   <script type="module" defer>
     import { JSBridge } from "./bridge.js";
     import { devtoolClientServer } from "./_devToolBridge.js";
+    import { handleCommand, setCssToStyleHead } from "./bootstraps.js";
+    window.page = "hp_0";
     devtoolClientServer();
     window.JSBridge = new JSBridge();
     const bridge = window.JSBridge;
-    bridge.registerEvent("ready", (res) => {});
-    bridge.registerEvent("render", (res) => {});
-    bridge.registerEvent("style", (res) => {});
+    bridge.registerEvent("ready", (res) => {
+      const { pageId, data } = res;
+      window.pageId = pageId;
+      console.log("当前页面 pageId: " + window.pageId);
+    });
+    bridge.registerEvent("render", (res) => {
+      const { pageId, data } = res;
+      if (window.page === pageId) {
+        handleCommand(data);
+        window.isInit = true;
+      }
+    });
+    bridge.registerEvent("style", (res) => {
+      const { pageId, data } = res;
+      if (window.pageId === pageId) {
+        setCssToStyleHead(data);
+      }
+    });
   </script>
 </html>

@@ -48,9 +48,9 @@ function analysisPage(pagePath: string, context: CodeContext): void {
   context.indent();
   context.pushCode(`path: '${pagePath}',`);
   context.newLine();
-  context.pushCode(`render: ${handleHp(pagePath)},`);
-  context.newLine();
   context.pushCode(`js: ${handleJS(pagePath)},`);
+  context.newLine();
+  context.pushCode(`render: ${handleHp(pagePath)},`);
   context.newLine();
   context.pushCode(`css: ${handleHpss(pagePath)}`);
   context.deindent();
@@ -74,8 +74,8 @@ analysisProject(path.join(config.READ_PATH, "app.json")).then((pagePaths: string
   context.deindent();
   context.pushCode("]");
   context.newLine();
-  context.pushCode(`handleJS(null,App.bind(null,pages))`);
-  context.newLine();
   context.pushCode(handleAppJS());
+  context.newLine();
+  context.pushCode(`handleJS(null,App.bind(null,pages))`);
   fs.writeFileSync(config.WRITE_PATH, context.getCode());
 });
