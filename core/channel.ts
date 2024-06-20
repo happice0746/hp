@@ -1,6 +1,5 @@
 import { AppInstance } from "./app";
 import { Command } from "./types";
-// import { WSsend } from "../devTool/socket-driver";
 export class Channel {
   appInstance: AppInstance;
   constructor(appInstance: AppInstance) {
@@ -14,9 +13,8 @@ export class Channel {
       data: command,
     };
     setTimeout(() => {
-      // TO_FIX
       global.WSsend && global.WSsend(payload);
-    }, 2000);
+    }, 1000);
   }
   acceptClientMessage(payload: any) {
     const { type, ...params } = payload;

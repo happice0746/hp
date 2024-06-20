@@ -42,7 +42,7 @@ export class Page {
     js(PageRefInstance.bind(this), null, null, null, global.hp);
   }
   launch() {
-    this.appInstance.pageReady && this.appInstance.pageReady();
+    this.appInstance.pageReady && this.appInstance.pageReady(this.pageId);
     this.appInstance.styleSheet(this.pageId, this.css);
     this.renderer.render();
   }
