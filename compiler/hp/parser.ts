@@ -42,5 +42,6 @@ export const parser = (tokens: Token[]) => {
     current++;
   }
   ast.body = nodeStack;
+
   return ast;
 };

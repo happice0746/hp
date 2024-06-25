@@ -49,23 +49,21 @@ const transformAttrs = (node: ASTNode, context: CodeContext) => {
   context.indent();
   Object.keys(node.attrs).forEach((key, index) => {
     const value = attrs[key];
-    if (key.includes("bind:")) {
-      const newKey = key.replace("bind:", "event");
-      context.pushCode(`${newKey}: ${value}`);
-    }
+    let varValue: string = "";
+    let eventKey: string = "";
     if (/\{\{.*?\}\}/.test(value)) {
       const result = value.match(/\{\{.*?\}\}/) as string[];
-      const newValue = "`${context.getValue('" + result[0].slice(2, -2).trim() + "')}`";
-      context.pushCode(`${key}: ${newValue}`);
-    } else {
-      context.pushCode(`${key}: ${value}`);
+      varValue = "`${context.getValue('" + result[0].slice(2, -2).trim() + "')}`";
     }
+    if (key.includes("bind:")) {
+      eventKey = key.replace("bind:", "event");
+    }
+    context.pushCode(`${eventKey !== "" ? eventKey : key}: ${varValue !== "" ? varValue : value}`);
     if (index < Object.keys(attrs).length - 1) {
       context.pushCode(`,`);
       context.newLine();
     }
   });
-
   context.deindent();
   context.pushCode("}");
 };

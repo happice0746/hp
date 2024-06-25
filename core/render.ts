@@ -16,6 +16,7 @@ export class Renderer {
     const childrenArr = this.renderRuntime(context);
     const newVnode = this.createNode("page", [], childrenArr);
     this.vnode = this.diff(newVnode, this.vnode, "root");
+    // console.dir(this.vnode, { depth: null });
     this.commit();
   }
   createNode(type: string, props: { [key: string]: any }, children: VNode[] | ((params: any) => any)) {

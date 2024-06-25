@@ -1,8 +1,9 @@
 <view className="viewBox" id="firstBox">
     <text className="textBox" id="secondBox">
         <view className="viewBox" id="thirdBox" ref={{a}}>happice</view>
-        <view className="viewBox" id="thirdBox" class="box">happice</view>
+        <view className="viewBox" id="thirdBox" class="box" bind:click="handleClick">happice</view>
     </text>
+    <text hIf={{a===15}}>如果a等于15则渲染</text>
 </view>
 <view>
     111

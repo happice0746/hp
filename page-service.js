@@ -10,6 +10,11 @@ Page({
     a,
     b: 11,
   },
+  methods: {
+    handleClick() {
+      console.log(this.data.a);
+    },
+  },
   onLaunch: () => {
     console.log("hello, world");
   },
@@ -24,6 +29,14 @@ Page({
     function (context) {
       return [
         context.createNode("text", {
+          hIf: `${context.getValue('a===15')}`
+        },
+        function (context) {
+          return [
+            '如果a等于15则渲染'
+          ];
+        }),
+        context.createNode("text", {
           className: "textBox",
           id: "secondBox"
         },
@@ -32,7 +45,8 @@ Page({
             context.createNode("view", {
               className: "viewBox",
               id: "thirdBox",
-              class: "box"
+              class: "box",
+              eventclick: "handleClick"
             },
             function (context) {
               return [

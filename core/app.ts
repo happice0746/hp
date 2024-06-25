@@ -22,6 +22,9 @@ export class AppInstance {
     const firstPage = this.pagesConfig[0];
     this.navigator.navigateTo(firstPage.path + "?init=true");
   }
+  getPageInstanceById(pageId) {
+    return this.navigator.getPageInstanceById(pageId);
+  }
   pageReady(pageId: string) {
     this.appConfig.onReady && this.appConfig.onReady();
     this.channel.postClientMessage(pageId, "ready", "");
@@ -31,7 +34,19 @@ export class AppInstance {
     if (!pageConfig) throw new Error("Except the pageConfig in app");
     return new Page(this, pageConfig);
   }
-  handleMessage(type: string, params: any) {}
+  handleMessage(type: string, params: any) {
+    if (type === "event") {
+      this.handleEvent(params);
+    }
+  }
+  handleEvent(params: any) {
+    const { eventName, pageId, ...otherParams } = params;
+    const pageInstance = this.getPageInstanceById(pageId);
+    const PageRefInstance = pageInstance?.pageRef;
+    if (PageRefInstance?.methods[eventName]) {
+      PageRefInstance?.methods[eventName].call(PageRefInstance, otherParams);
+    }
+  }
   openPage(pageId: string) {}
   styleSheet(pageId: string, css: string) {
     this.channel.postClientMessage(pageId, "style", css);

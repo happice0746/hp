@@ -8,16 +8,16 @@ export const handleProps = (ele, props) => {
     });
   }
   if (props.src) ele.src = props.src;
-  // if (props?.event) {
-  //   ele.onclick = function () {
-  //     const eventName = props?.event;
-  //     window.JSBridge.postMessage({
-  //       type: "event",
-  //       eventName,
-  //       pageId: window.pageId,
-  //     });
-  //   };
-  // }
+  if (props?.eventclick) {
+    ele.onclick = function () {
+      const eventName = props?.eventclick;
+      window.JSBridge.postNativeMessage({
+        type: "event",
+        eventName,
+        pageId: window.pageId,
+      });
+    };
+  }
 };
 export const handleCommand = (commandList) => {
   commandList

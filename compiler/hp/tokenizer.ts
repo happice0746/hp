@@ -19,17 +19,25 @@ export const tokenizer = (code: string) => {
         let attrName: string = "";
         let value: string = "";
         let flag: boolean = true;
+        let isVar: boolean = false;
         while (code[current] !== ">") {
           current++;
-          if (code[current] === "=") {
+          if (code[current] === "=" && !isVar) {
             flag = false;
             continue;
+          }
+          if (code[current] === "{") {
+            if (code[++current] === "{") {
+              isVar = true;
+            }
+            current--;
           }
           if (code[current] === " " || code[current] === ">") {
             attrs[attrName] = value;
             attrName = "";
             value = "";
             flag = true;
+            isVar = false;
             continue;
           }
           attrName += flag ? code[current] : "";
