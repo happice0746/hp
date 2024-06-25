@@ -2,7 +2,7 @@ import { TAG_MAP, RENDER_COMMAND } from "./constant.js";
 export const handleProps = (ele, props) => {
   if (props?.style) ele.style = props.style;
   if (props?.class) {
-    const classArr = props.props.class.split(" ");
+    const classArr = props.class.split(" ");
     classArr.forEach((item) => {
       ele.classList.add(item);
     });
@@ -20,7 +20,6 @@ export const handleProps = (ele, props) => {
   // }
 };
 export const handleCommand = (commandList) => {
-  console.log(commandList);
   commandList
     .sort((a, b) => a.nodeId - b.nodeId)
     .forEach((command) => {
@@ -34,6 +33,7 @@ export const handleCommand = (commandList) => {
         }
         element.id = "node" + nodeId;
         if (content) element.innerText = content;
+        if (tag !== "page" && props !== null) handleProps(element, props);
         if (parentId === "root") {
           document.querySelector("#root").appendChild(element);
         } else {

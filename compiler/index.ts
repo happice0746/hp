@@ -2,7 +2,7 @@ import { HpssTransformer } from "./hpss/transformer";
 import { JSTransformer } from "./js/transformer";
 import { tokenizer } from "./hp/tokenizer";
 import { parser } from "./hp/parser";
-import { generator } from "./generator";
+import { generator } from "./hp/generator";
 import path from "node:path";
 import { TransformerConfig as config } from "./config";
 import fs from "node:fs";

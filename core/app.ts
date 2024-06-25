@@ -2,7 +2,6 @@ import { AppConfig, Command, PageConfig } from "./types";
 import { Channel } from "./channel";
 import { HNavigator } from "./navigator";
 import { Page } from "./page";
-import path from "path";
 
 export class AppInstance {
   appConfig: AppConfig;
@@ -23,8 +22,9 @@ export class AppInstance {
     const firstPage = this.pagesConfig[0];
     this.navigator.navigateTo(firstPage.path + "?init=true");
   }
-  pageReady() {
+  pageReady(pageId: string) {
     this.appConfig.onReady && this.appConfig.onReady();
+    this.channel.postClientMessage(pageId, "ready", "");
   }
   createPage(pagePath: string): Page {
     const pageConfig = this.pagesConfig.find((page) => page.path === pagePath);
