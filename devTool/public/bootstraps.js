@@ -8,6 +8,9 @@ export const handleProps = (ele, props) => {
     });
   }
   if (props.src) ele.src = props.src;
+  if (props.hIf !== undefined && props.hIf === "false") {
+    ele.style.display = "none";
+  }
   if (props?.eventclick) {
     ele.onclick = function () {
       const eventName = props?.eventclick;

@@ -3,6 +3,7 @@ Page({
   data: {
     a,
     b: 11,
+    flag: true,
   },
   methods: {
     handleClick() {

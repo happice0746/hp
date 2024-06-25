@@ -9,6 +9,7 @@ Page({
   data: {
     a,
     b: 11,
+    flag: a !== 1,
   },
   methods: {
     handleClick() {
@@ -29,11 +30,11 @@ Page({
     function (context) {
       return [
         context.createNode("text", {
-          hIf: `${context.getValue('a===15')}`
+          hIf: `${context.getValue('flag')}`
         },
         function (context) {
           return [
-            '如果a等于15则渲染'
+            '如果flag等于true则渲染'
           ];
         }),
         context.createNode("text", {
